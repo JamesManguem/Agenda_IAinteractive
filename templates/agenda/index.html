@@ -1,0 +1,66 @@
+<!--Aqui se muestran los contactos agregados, y los mensajes flash al agregar,editar,eliminar-->
+
+{%include 'agenda/header.html' %}
+
+<br/>
+
+<a href="{{url_for('create')}}" class="btn btn-success">
+    Ingresar nuevo contacto
+</a>
+<br>
+<br>
+
+{% with messages = get_flashed_messages() %}
+{%if messages%}
+{%for message in  messages %}
+<br>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{%endfor%}
+{%endif%}
+{%endwith%}
+
+
+<table class="table table-light">
+    <thead class="thead-light">
+    <tr>
+        <th>#</th>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <!--<th>Apellido Paterno</th> !-->
+        <!--<th>Apellido Materno</th>!-->
+        <!--<th>Email</th>!-->
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+   {% for contacto in contactos %}
+    <tr>
+
+        <td>{{contacto.0}}</td>
+
+        <td>
+            <img  src="uploads/{{contacto.6}}" class="img-thumbnail" width="100" />
+
+        </td>
+
+        <td>{{contacto.1}}</td>
+        <td>{{contacto.4}}</td>
+        <!--<td>{{contacto.2}}</td>!-->
+       <!-- <td>{{contacto.3}}</td>!-->
+       <!-- <td>{{contacto.5}}</td>!-->
+        <td>
+            <a class="btn btn-warning" href="/edit/{{contacto.0}}">Editar</a> |
+            <a  onclick="return confirm('¿Deseas eliminar a este contacto?')" class="btn btn-danger" href="/delete/{{contacto.0}}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% include 'agenda/footer.html'%}

@@ -1,0 +1,84 @@
+<!--Vista para editar los datos del contacto-->
+
+{%include 'agenda/header.html' %}
+
+
+{%for contacto in contactos %}
+
+<br>
+<br>
+<form method="post" action="/update" enctype="multipart/form-data">
+
+
+    <div class="card">
+        <div class="card-header">
+            Editar información del contacto
+        </div>
+        <div class="card-body">
+            <h4 class="card-title" Datos de contacto></h4>
+            <p class="card-text">
+
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" value="{{contacto.1}}" name="nombre" id="nombre" class="form-control">
+
+            </div>
+
+            <div class="form-group">
+                <label for="apellido_paterno">Apellido paterno:</label>
+                <input type="text" value="{{contacto.2}}" name="apellido_paterno" id="apellido_paterno"
+                       class="form-control">
+
+            </div>
+
+            <div class="form-group">
+                <label for="apellido_materno">Apellido materno:</label>
+                <input type="text" value="{{contacto.3}}" name="apellido_materno" id="apellido_materno"
+                       class="form-control">
+
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" value="{{contacto.4}}" name="telefono" id="telefono" class="form-control" pattern="[0-9]{10}" title="Ingrese un numero de 10 digitos">
+
+            </div>
+
+            <div class="form-group">
+                <label for="correo">E-mail:</label>
+                <input type="email" value="{{contacto.5}}" name="correo" id="correo" class="form-control" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Ingrese una dirección de correo válida">
+
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Foto:</label>
+                <img class="img-thumbnail" src="{{url_for('uploads',nombreFoto=contacto.6)}}" width="100">
+                <input type="file" name="foto" id="foto" class="form-control">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <input type="submit" value="Modificar" class="btn btn-warning">
+                <a href="{{url_for('index')}}" class="btn btn-info">Regresar</a>
+
+
+            </div>
+
+
+            <input type="hidden" value="{{contacto.0}}" name="id" id="id">
+            <br>
+
+
+            </p>
+        </div>
+    </div>
+
+
+</form>
+
+
+{%endfor%}
+{% include 'agenda/footer.html'%}
