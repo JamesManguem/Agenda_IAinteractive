@@ -6,6 +6,8 @@ Prueba realizada para IAinteractive
 **para arrancar la app solo se debe posicionar en la carpeta raiz, donde esta el archivo app.py, e inicar el servidor con el comando python app.py *
 **la carpeta ide no contiene archivos necesarios para la ejecución de la aplicación, fue creada por el ide de pycharm**
 
+Los campos de telefono y correo solo tienene validadción para no duplicarse en la base de dator con la propiedad unique
+
 
 scrip de base de datos:
 
